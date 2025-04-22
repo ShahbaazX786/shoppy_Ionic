@@ -1,27 +1,26 @@
 import { Component, inject } from '@angular/core';
 import {
+  IonCard,
+  IonCol,
   IonContent,
   IonHeader,
-  IonTitle,
-  IonToolbar,
-  IonRow,
-  IonCol,
-  IonCard,
-  IonThumbnail,
+  IonIcon,
   IonImg,
   IonLabel,
+  IonRow,
+  IonSearchbar,
   IonText,
-  IonIcon,
+  IonThumbnail,
+  IonTitle,
+  IonToolbar,
 } from '@ionic/angular/standalone';
 import { ApiService } from '../services/api/api.service';
-import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   imports: [
-    NgFor,
     IonHeader,
     IonToolbar,
     IonTitle,
@@ -34,11 +33,13 @@ import { NgFor } from '@angular/common';
     IonLabel,
     IonText,
     IonIcon,
+    IonSearchbar,
   ],
 })
 export class HomePage {
   items: any[] = [];
   allItems: any[] = [];
+  searchQuery!: string;
   private dummyAPI = inject(ApiService);
 
   constructor() {}
@@ -50,5 +51,21 @@ export class HomePage {
   getAllItems() {
     this.allItems = this.dummyAPI.items;
     this.items = [...this.allItems];
+  }
+
+  handleSearch(event: any) {
+    this.items = [];
+    this.searchQuery = event.detail.value.toLowerCase();
+    if (this.searchQuery.length > 0) {
+      this.searchItems();
+    } else {
+      this.items = [...this.allItems];
+    }
+  }
+
+  searchItems() {
+    this.items = this.dummyAPI.items.filter((item) =>
+      item.name.toLowerCase().includes(this.searchQuery)
+    );
   }
 }

@@ -4,6 +4,11 @@
       Shoppie
     </ion-title>
   </ion-toolbar>
+
+  <ion-toolbar>
+    <ion-searchbar [debounce]="800" #searchQuery [mode]="'ios'" placeholder="Search for popular gifts..." (ionInput)="handleSearch($event)">
+    </ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
