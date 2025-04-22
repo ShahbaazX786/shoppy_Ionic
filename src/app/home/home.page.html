@@ -6,7 +6,8 @@
   </ion-toolbar>
 
   <ion-toolbar>
-    <ion-searchbar [debounce]="800" #searchQuery [mode]="'ios'" placeholder="Search for popular gifts..." (ionInput)="handleSearch($event)">
+    <ion-searchbar [debounce]="800" #searchQuery [mode]="'ios'" placeholder="Search for popular gifts..."
+      (ionInput)="handleSearch($event)">
     </ion-searchbar>
   </ion-toolbar>
 </ion-header>
@@ -15,7 +16,7 @@
   <ion-row>
     @for (item of items; track i; let i = $index) {
     <ion-col sizeLg="3" sizeMd="4" sizeSm="6" sizeXs="6">
-      <ion-card>
+      <ion-card [routerLink]="['/', 'home', 'gifts', item?.id]">
 
         <ion-thumbnail>
           <ion-img [src]="item?.cover"></ion-img>
