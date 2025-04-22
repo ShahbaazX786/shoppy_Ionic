@@ -60,7 +60,6 @@ export class ItemDetailPage implements OnInit, OnDestroy {
 
     this.cartSub = this.cartService.cart.subscribe({
       next: (cart) => {
-        console.log(cart);
         this.totalItems = cart ? cart?.totalItem : 0;
       },
     });
@@ -68,7 +67,6 @@ export class ItemDetailPage implements OnInit, OnDestroy {
 
   getItem() {
     const id = this.route.snapshot.paramMap.get('id');
-    console.log('check id: ', id);
     if (!id || id == '0') {
       this.navCtrl.back();
       return;
@@ -76,7 +74,6 @@ export class ItemDetailPage implements OnInit, OnDestroy {
     this.id = id;
 
     this.item = this.dummyAPI.items.find((record: any) => record.id == id);
-    console.log(this.item);
   }
 
   addItem() {

@@ -77,10 +77,8 @@ export class CartPage implements OnInit, OnDestroy {
   checkUrl() {
     const route_url = this.router.url;
     const urlParts = route_url.split('/');
-    urlParts.pop(); // Remove the last segment
-    console.log(urlParts);
+    urlParts.pop();
     this.previous = urlParts.join('/');
-    console.log('url: ', this.previous);
   }
 
   addQuantity(item: any) {
