@@ -15,6 +15,7 @@ import {
   IonToolbar,
 } from '@ionic/angular/standalone';
 import { ApiService } from '../services/api/api.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -34,6 +35,7 @@ import { ApiService } from '../services/api/api.service';
     IonText,
     IonIcon,
     IonSearchbar,
+    RouterLink,
   ],
 })
 export class HomePage {
